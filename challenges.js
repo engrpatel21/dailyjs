@@ -84,7 +84,12 @@ sumNumbers([]) //=> 0
 // Your solution for 03-sumNumbers here:
 
 
-
+function sumNumbers(nums) {
+  if (!nums.length) {
+    return 0; 
+  }
+  return nums.reduce((summedItems, currentItem) => summedItems + currentItem)
+}
 
 
 /*-----------------------------------------------------------------
@@ -107,7 +112,12 @@ add(7,-12) //=> -5
 // Your solution for 04-addList here:
 
 
-
+function addList(...nums){
+  if (!nums.length) {
+    return 0;
+  }
+  return nums.reduce((summedItems, currentItem) => summedItems + currentItem)
+}
 
 
 /*-----------------------------------------------------------------
@@ -131,7 +141,12 @@ computeRemainder(10.5, 3) //=> 1.5
 // Your solution for 05-computeRemainder:
 
 
-
+function computeRemainder(num1, num2) {
+  if (!num2) {
+    return Infinity;
+  }
+  return num1 % num2;
+}
 
 
 /*-----------------------------------------------------------------
@@ -153,9 +168,16 @@ range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
 
-
-
-
+function range(intA, intB) {
+  var array = []
+  if (intA > intB) {
+    return "First argument must be less than second"
+  }
+  for (let i = intA; i < intB; i++) {
+    array.push(i)
+  }
+  return array
+}
 
 /*-----------------------------------------------------------------
 Challenge: 07-reverseUpcaseString
@@ -172,9 +194,10 @@ reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES"
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
 
-
-
-
+function reverseUpcaseString(string){
+  return string.split("").reverse().join("").toUpperCase()
+}
+reverseUpcaseString("hello")
 
 /*-----------------------------------------------------------------
 Challenge: 08-removeEnds
@@ -193,9 +216,14 @@ removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
 
-
-
-
+function removeEnds(string) {
+  if (string.length < 3) return ""
+  let array = string.split("")
+  array.shift()
+  array.pop()
+  string = array.join("")
+  return string
+}
 
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
