@@ -52,3 +52,46 @@ You may choose to do more than one per day, or none at all - just don't fall too
 - Your instructors will be checking your progress from time-to-time. As you solve the challenges, commit your work, and `$ git push origin master`. This pushes the updates to your fork.
 
 
+
+# **Project Title**
+### Date: MM/DD/YYYY
+#### By: Developer Name
+***
+### ***Description***
+>  ##### A brief description of the project.
+***
+### ***Technologies Used***
+>  ##### List of the technologies used, e.g., JavaScript, HTML, CSS...
+***
+### ***Getting Started***
+>  ##### In this section include the [link](url) to your project and any instructions you deem important.
+***
+### ***Screenshots***
+> ####### Quick Image Description
+> ![Alt Text](url)
+> ####### Quick Image Description
+> ![Alt Text](url)
+***
+### ***User Experience***
+>  #### User Story #1
+>  ##### A brief description of someone and why they would engage with this project.
+>  #### User Story #2
+>  ##### A brief description of someone and why they would engage with this project.
+>  #### Minimum Viable Product
+>  ##### * As a user, ...
+>  ##### * As a user, ...
+>  ##### * As a user, ...
+***
+### ***Future Updates***
+>  ##### * Planned future enhancements (icebox items)
+>  ##### * This is the section for your “want list”
+>  ##### * ~~Strikethrough items once you’ve updated the project~~
+***
+### ***Credits***
+> ##### Credit: [Description](url)
+>
+> ##### Credit: [Description](url)
+>
+> ##### Credit: [Description](url)
+***
+EOF
