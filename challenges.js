@@ -300,6 +300,11 @@ isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
 
+function isPalindrome(str) {
+  splitStr = str.toUpperCase().split(' ').join('')
+  return splitStr === splitStr.split('').reverse().join('')
+}
+
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
 
@@ -321,6 +326,17 @@ hammingDistance('!!!!', '****'); //=> 4
 hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
+
+function hammingDistance(str1, str2) {
+  if(str1.length !== str2.length) return NaN
+  let counter = 0
+  for(let i=0; i<str1.length; i++) {
+    if(str1[i] !== str2[i]) counter ++
+  }
+  return counter
+}
+
+
 
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
