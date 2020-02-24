@@ -301,8 +301,17 @@ isPalindrome(''); //=> true
 // Your solution for 11-isPalindrome here:
 
 function isPalindrome(str) {
-  splitStr = str.toUpperCase().split(' ').join('')
-  return splitStr === splitStr.split('').reverse().join('')
+  splitStr = str
+    .toUpperCase()
+    .split(" ")
+    .join("");
+  return (
+    splitStr ===
+    splitStr
+      .split("")
+      .reverse()
+      .join("")
+  );
 }
 
 /*-----------------------------------------------------------------
@@ -328,15 +337,13 @@ hammingDistance('abc', 'ab'); //=> NaN
 // Your solution for 12-hammingDistance here:
 
 function hammingDistance(str1, str2) {
-  if(str1.length !== str2.length) return NaN
-  let counter = 0
-  for(let i=0; i<str1.length; i++) {
-    if(str1[i] !== str2[i]) counter ++
+  if (str1.length !== str2.length) return NaN;
+  let counter = 0;
+  for (let i = 0; i < str1.length; i++) {
+    if (str1[i] !== str2[i]) counter++;
   }
-  return counter
+  return counter;
 }
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
@@ -358,6 +365,17 @@ mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
 
+// Create function called mumble that accepts a str
+//
+
+function mumble(str) {
+  let arr = str.split("");
+  arr.forEach((char, idx) => {
+    arr[idx] = char.repeat(idx + 1);
+  });
+  return arr.join("-");
+}
+
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
 
@@ -367,7 +385,7 @@ Prompt:
 
 - Write a function named fromPairs that creates an object from an array containing nested arrays.
 - Each nested array will have two elements representing key/value pairs used to create key/value pairs in an object to be returned by the function.
-- If a key appears in multiple pairs, the rightmost pair should overwrite previous the previous entry in the object.
+- If a key appears in multiple pairs, the rightmost pair should overwrite the previous entry in the object.
 
 Examples:
 
@@ -375,6 +393,23 @@ fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
 fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
+
+// function fromPairs(arr) {
+//   let pairs = {}
+//   for (let i = 0; i < arr.length; i++) {
+//     pairs[arr[i][0]] = arr[i][1]
+//   }
+//   return pairs
+// }
+
+function fromPairs(arr) {
+  let pairs = {};
+  console.log(arr);
+  arr.forEach(function(i) {
+    pairs[[i[0]]] = i[1];
+  });
+  return pairs;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
@@ -393,6 +428,16 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
+
+function mergeObjects(...args) {
+  let firstObj = args[0];
+  for (let i = 1; i < args.length; i++) {
+    for (arg in args[i]) {
+      firstObj[arg] = args[i][arg];
+    }
+  }
+  return firstObj;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
