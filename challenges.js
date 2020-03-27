@@ -473,6 +473,18 @@ findHighestPriced([
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
 
+function findHighestPriced(arr) {
+  let highestPriced = 0;
+  let result;
+  arr.forEach((obj, idx) => {
+    if (obj.price > highestPriced) {
+      highestPriced = obj.price;
+      result = idx;
+    }
+  });
+  return arr[result];
+}
+
 /*-----------------------------------------------------------------
 Challenge: 17-mapArray
 
@@ -500,6 +512,14 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
 
+function mapArray(arr, func) {
+  let newArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    newArray.push(func(arr[i], i));
+  }
+  return newArray;
+}
+
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
 
@@ -507,7 +527,7 @@ Difficulty:  Intermediate
 
 Prompt:
 
-The goal is of this challenge is to write a function that performs the functionality of JavaScript's Array.prototype.reduce method.
+The goal of this challenge is to write a function that performs the functionality of JavaScript's Array.prototype.reduce method.
 
 - Write a function named reduceArray that accepts three arguments: (1) an array; (2) a callback function; and (3) a value used as the initial value of the "accumulator".
 - The reduceArray function should return whatever is returned by the callback function on the last iteration.
@@ -533,6 +553,13 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 //=> {"Yes": 2, "No": 1, "Maybe": 1}
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
+
+function reduceArray(arr, callback, acc) {
+  for (let i = 0; i < arr.length; i++) {
+    acc = callback(acc, arr[i], i);
+  }
+  return acc;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
@@ -561,6 +588,18 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
 
+function flatten(arr) {
+  let flatArr = [];
+  arr.forEach(element => {
+    if (Array.isArray(element)) {
+      flatArr = flatArr.concat(flatten(element));
+    } else {
+      flatArr.push(element);
+    }
+  });
+  return flatArr;
+}
+
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
 
@@ -580,6 +619,18 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
+
+function isPrime(num) {
+  if (num <= 1 || num % 1 != 0) {
+    return false;
+  }
+  for (let i = 2; i < Math.floor(num / 2) + 1; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
@@ -605,6 +656,22 @@ primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
 
+function primeFactors(num) {
+  let arr = [];
+  if (num <= 1 || num % 1 != 0) return arr;
+  if (isPrime(num)) {
+    arr.push(num);
+    return arr;
+  }
+  for (let i = 2; i <= num; i++) {
+    while (num != 0 && num % i === 0) {
+      num = num / i;
+      arr.push(i);
+    }
+  }
+  return arr;
+}
+
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
@@ -625,6 +692,28 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
+
+// define a function that accepts two arguments which are arrays
+// define an empty array
+// set up a for loop that iterates through the first array
+// loop through the second array and compare indexes
+// when we have the same value in both arrays, push into new array
+// return the array
+
+function intersection(arr1, arr2) {
+  let positionsUsed = [];
+  let holder = [];
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr2.length; j++) {
+      if (arr1[i] === arr2[j] && positionsUsed.indexOf(j) === -1) {
+        holder.push(arr[i]);
+        positionsUsed.push(j);
+        j = arr2.length;
+      }
+    }
+  }
+  return holder;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
@@ -647,6 +736,31 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
+
+function balancedBrackets(str) {
+  let stack = [];
+  let last;
+  let matchingPairs = {
+    "{": "}",
+    "[": "]",
+    "(": ")"
+  };
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "{" || str[i] === "(" || str[i] === "[") {
+      stack.push(str[i]);
+    } else {
+      last = stack.pop();
+      if (matchingPairs[last] !== str[i]) {
+        return false;
+      }
+    }
+  }
+  if (stack.length != 0) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
@@ -674,6 +788,41 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
 
+// write a function called isWinningTicket which accepts an array
+// create a var which is a bool val set to true
+// create a for loop that gives us access to the duples
+// create a for loop that iterates through the string and checks to see if the string has the char specified by the num
+// If I get to the end of the str and no char has matched, var = false
+// return bool var
+
+function isWinningTicket(arr) {
+  let win = 0;
+  let string;
+  let num;
+  for (let i = 0; i < arr.length; i++) {
+    string = arr[i][0];
+    num = arr[i][1];
+    for (let j = 0; j < string.length; j++) {
+      console.log("-------")
+      console.log(string[j])
+      console.log("^string j")
+      console.log(num)
+      console.log("^^character code")
+      console.log(String.fromCharCode(num))
+      console.log("^string from char code")
+      if (string[j] === String.fromCharCode(num)) {
+        win++;
+      }
+    }
+  }
+  console.log("----")
+  console.log(win)
+  console.log("^win")
+  console.log(arr.length)
+  console.log("^array length")
+  return win !== arr.length;
+}
+
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
@@ -700,6 +849,18 @@ getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
 
+function getNumForIP(str) {
+  arr = str.split(".");
+  let thirtyTwoBit = 0;
+  let power = 0;
+  for (let i = arr.length - 1; i > -1; i--) {
+    let holder = parseInt(arr[i]);
+    thirtyTwoBit += holder * 256 ** power;
+    power += 1;
+  }
+  return thirtyTwoBit;
+}
+
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
 
@@ -724,6 +885,27 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
+
+// make function that accepts str
+// split the string at _ and -
+// capitalize the first character at the beginning of each split, except the first (but if already capitalized it can stay capitalized)
+// rejoin the string
+
+function toCamelCase(str) {
+  array = [];
+  if (str.includes("-")) {
+    var array = str.split("-");
+  }
+  if (str.includes("_")) {
+    var array = str.split("_");
+  }
+  for (let i = 1; i < array.length; i++) {
+    let word = array[i].substr(1);
+    array[i] = array[i][0].toUpperCase() + word;
+  }
+  let camelCase = array.join("") + "";
+  return camelCase;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
