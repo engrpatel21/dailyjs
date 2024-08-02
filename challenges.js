@@ -282,9 +282,6 @@ mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
 
-// Create function called mumble that accepts a str
-//
-
 
 
 /*-----------------------------------------------------------------
@@ -305,13 +302,6 @@ fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sal
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
 
-// function fromPairs(arr) {
-//   let pairs = {}
-//   for (let i = 0; i < arr.length; i++) {
-//     pairs[arr[i][0]] = arr[i][1]
-//   }
-//   return pairs
-// }
 
 
 
